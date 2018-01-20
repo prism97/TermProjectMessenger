@@ -48,9 +48,9 @@ public class ReadThreadClient implements Runnable {
                     } else {
                         if (map.containsKey(name)) {
                             map.get(name).add(message);
-                            if (!name.equals("Server")) {
+                            /*if (!name.equals("Server")) {
                                 notification();
-                            }
+                            }*/
                             System.out.println(s);
                         } else {
                             arrayList = new ArrayList<>();

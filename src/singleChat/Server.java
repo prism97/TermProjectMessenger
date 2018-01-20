@@ -1,6 +1,5 @@
 package singleChat;
 
-import javafx.scene.control.ChoiceBox;
 import util.NetworkUtil;
 import java.net.ServerSocket;
 import java.net.Socket;

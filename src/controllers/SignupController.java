@@ -54,6 +54,15 @@ public class SignupController {
     }
 
     @FXML
+    void backAction() {
+        try {
+            main.showLoginPage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void resetAction() {
         userText2.setText(null);
         passwordText2.setText(null);

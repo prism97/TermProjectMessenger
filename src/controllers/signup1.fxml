@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="541.0" prefWidth="411.0" style="-fx-background-color: #0084ff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
-        <AnchorPane layoutX="28.0" layoutY="21.0" prefHeight="500.0" prefWidth="355.0" style="-fx-background-color: #44bec7;">
+        <AnchorPane layoutX="28.0" layoutY="21.0" onDragDetected="#backAction" prefHeight="500.0" prefWidth="355.0" style="-fx-background-color: #44bec7;">
             <children>
                 <Text fill="WHITE" layoutX="19.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Account" textAlignment="CENTER">
                     <font>
@@ -29,7 +29,7 @@
                         <Font size="15.0" />
                     </font>
                 </Text>
-                <Button fx:id="signup" layoutX="184.0" layoutY="430.0" mnemonicParsing="false" onAction="#signupAction" text="SIGNUP" textAlignment="CENTER" textFill="#00a6ff">
+                <Button fx:id="signup" layoutX="224.0" layoutY="430.0" mnemonicParsing="false" onAction="#signupAction" text="SIGNUP" textAlignment="CENTER" textFill="#00a6ff">
                     <font>
                         <Font name="Candara Bold" size="15.0" />
                     </font>
@@ -52,12 +52,16 @@
                     </font>
                 </Text>
                 <PasswordField fx:id="confirmPassword" layoutX="47.0" layoutY="378.0" prefHeight="25.0" prefWidth="247.0" />
-                <Button fx:id="reset" layoutX="73.0" layoutY="430.0" mnemonicParsing="false" onAction="#resetAction" prefHeight="28.0" prefWidth="70.0" text="RESET" textAlignment="CENTER" textFill="#00a6ff">
+                <Button fx:id="reset" layoutX="134.0" layoutY="430.0" mnemonicParsing="false" onAction="#resetAction" prefHeight="28.0" prefWidth="70.0" text="RESET" textAlignment="CENTER" textFill="#00a6ff">
                     <font>
                         <Font name="Candara Bold" size="15.0" />
                     </font>
                 </Button>
+            <Button layoutX="48.0" layoutY="430.0" mnemonicParsing="false" onAction="#backAction" prefHeight="28.0" prefWidth="70.0" text="BACK" textAlignment="CENTER" textFill="#00a6ff">
+               <font>
+                  <Font name="Candara Bold" size="15.0" />
+               </font>
+            </Button>
             </children></AnchorPane>
     </children>
 </AnchorPane>
-

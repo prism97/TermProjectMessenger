@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #0084ff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <children>
+      <AnchorPane layoutX="378.0" layoutY="25.0" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #44bec7;">
+         <children>
+            <Button fx:id="loginButton" layoutX="101.0" layoutY="152.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="98.0" style="-fx-background-color: #ffffff;" text="LOGIN" textAlignment="CENTER">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#2596b5" />
+                        <Stop color="#9ed3e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+            <TextField fx:id="userText" layoutX="76.0" layoutY="58.0" prefHeight="25.0" prefWidth="185.0" promptText="username" />
+            <PasswordField fx:id="passwordText" layoutX="76.0" layoutY="101.0" prefHeight="25.0" prefWidth="185.0" promptText="password" />
+            <Text fill="WHITE" layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you don't have an account yet, sign up here!" textAlignment="CENTER" wrappingWidth="272.13671875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="signupButton" layoutX="88.0" layoutY="286.0" mnemonicParsing="false" onAction="#signupAction" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ffffff;" text="SIGNUP" textAlignment="CENTER">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#2596b5" />
+                        <Stop color="#9ed3e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="56.0">
+               <image>
+                  <Image url="@user.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="40.0" layoutY="98.0">
+               <image>
+                  <Image url="@lock.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text layoutX="49.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO " textAlignment="CENTER" wrappingWidth="272.13671766221523">
+         <font>
+            <Font name="Candara" size="48.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="0.6095238095238096" startX="0.1761904761904762" startY="0.5095238095238095">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#3bc7ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text layoutX="24.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MESSENGER">
+         <font>
+            <Font name="Candara" size="60.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#00d1ff" />
+                  <Stop color="#00d1ff" offset="0.007662835249042145" />
+                  <Stop color="#9ee7ff" offset="0.32164158470592863" />
+                  <Stop color="#00d1ff" offset="0.6770944424694864" />
+                  <Stop color="#9fe7ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Line endX="100.0" layoutX="185.0" layoutY="266.0" startX="-100.0" stroke="WHITE" />
+      <Text fill="WHITE" layoutX="43.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find Connect &amp; Chat" textAlignment="CENTER" wrappingWidth="283.01025390625">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatController">
+   <children>
+      <Rectangle fill="#00acf5" height="65.0" layoutY="435.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="412.0" />
+      <TextField fx:id="message" layoutX="14.0" layoutY="441.0" prefHeight="50.0" prefWidth="320.0" style="-fx-background-radius: 10;" />
+      <Button layoutX="346.0" layoutY="443.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="46.0" prefWidth="52.0" style="-fx-background-insets: 0; -fx-background-radius: 12; -fx-background-color: #ffffff;" text="SEND" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Candara Bold" size="13.0" />
+         </font>
+      </Button>
+      <Rectangle fill="#ffa0a0" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="206.0" />
+      <Text fx:id="chatPartner" fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="129.13671875">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <ScrollPane hbarPolicy="NEVER" layoutY="50.0" prefHeight="385.0" prefWidth="412.0" style="-fx-background: #ffffff;">
+         <content>
+            <VBox fx:id="vBox" prefHeight="380.0" prefWidth="397.0" spacing="2.0" style="-fx-background-color: #ffffff;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Rectangle fill="#d696bb" height="50.0" layoutX="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="206.0" />
+      <Text fx:id="me" fill="WHITE" layoutX="269.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="129.13671875">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

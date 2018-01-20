@@ -1,0 +1,7 @@
+Sunan:Doha,
+Muntaka:Adiba,Priyeta,Tasnim,Anisha,
+Doha:Sunan,
+Adiba:Priyeta,Muntaka,Tasnim,
+Anisha:Priyeta,Muntaka,Tasnim,
+Priyeta:Adiba,Muntaka,Anisha,Tasnim,
+Tasnim:Priyeta,Adiba,Muntaka,Anisha,

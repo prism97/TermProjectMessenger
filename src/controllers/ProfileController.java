@@ -61,8 +61,10 @@ public class ProfileController {
         ArrayList<String> activeFriends = new ArrayList<>();
         ArrayList<String> friends = readFriendList();
         for (String s : friends) {
+            System.out.println("friend:" + s);
             if (activeNotFriend.contains(s + ":login") && !activeNotFriend.contains(s + ":logout")) {
                 activeFriends.add(s);
+                System.out.println("activeFriend:" + s);
             }
         }
 
@@ -124,17 +126,17 @@ public class ProfileController {
         Runnable task = () -> {
             while (true) {
                 if (c.messageMap.containsKey("Server") && !c.messageMap.get("Server").isEmpty()) {
-                    activeNotFriend.addAll(c.messageMap.get("Server"));  //here
-
                     ArrayList<String> friends = readFriendList();
                     for (String s : friends) {
                         if (c.messageMap.get("Server").contains(s + ":login")) {
+                            activeNotFriend.add(s + ":login");
                             for (Node node : friendBox.getChildren()) {
                                 if (node.getProperties().containsKey(s)) {
                                     Platform.runLater(() -> node.setStyle("-fx-background-color: #370072;"));
                                 }
                             }
                         } else if (c.messageMap.get("Server").contains(s + ":logout")) {
+                            activeNotFriend.add(s + ":logout");
                             for (Node node : friendBox.getChildren()) {
                                 if (node.getProperties().containsKey(s)) {
                                     Platform.runLater(() -> node.setStyle("-fx-background-color: #0084ff;"));

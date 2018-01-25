@@ -9,15 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import singleChat.Client;
 import util.NetworkUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
 
 public class ChatController {
     private String userName;
@@ -42,17 +38,17 @@ public class ChatController {
     private void startTask() {
         Runnable task = () -> {
             System.out.println("reading");
-            HashMap<String, ArrayList<String>> message;
+            ArrayList<String> message = new ArrayList<>();
             try {
                 while (true) {
-                    message = client.messageMap;
-                    if (message.containsKey(partnerName)) {
-                        for (Iterator<String> iterator = client.messageMap.get(partnerName).iterator(); iterator.hasNext(); ) {
-                            String m = iterator.next();
-                            iterator.remove();
-                            Label label = new Label(m);
+                    if (client.messageMap.containsKey(partnerName) && !client.messageMap.get(partnerName).isEmpty()) {
+                        message.addAll(client.messageMap.get(partnerName));
+                        client.messageMap.get(partnerName).clear();
+                        for (String m : message) {
+                            Font titleFont = Font.loadFont(getClass().getResource("OpenSansEmoji.ttf").toExternalForm(), 15);
+                            Label label = new Label(emojiConversion(m));
                             label.setPadding(new Insets(5));
-                            label.setFont(Font.font("Candara", FontWeight.BOLD, 14));
+                            label.setFont(titleFont);
                             label.setTextFill(Color.WHITE);
                             label.setBackground(new Background(new BackgroundFill(Color.valueOf("#ffa0a0"), new CornerRadii(5), Insets.EMPTY)));
                             HBox hBox = new HBox();
@@ -60,6 +56,7 @@ public class ChatController {
                             hBox.getChildren().add(label);
                             Platform.runLater(() -> vBox.getChildren().add(hBox));
                         }
+                        message.clear();
                     }
                 }
             } catch (Exception e) {
@@ -90,10 +87,10 @@ public class ChatController {
             } else {
                 userNc.write(userName + ":" + partnerName + ":" + message.getText());
             }
-
-            Label label = new Label(message.getText());
+            Font titleFont = Font.loadFont(getClass().getResource("OpenSansEmoji.ttf").toExternalForm(), 15);
+            Label label = new Label(emojiConversion(message.getText()));
             label.setPadding(new Insets(5));
-            label.setFont(Font.font("Candara", FontWeight.BOLD, 14));
+            label.setFont(titleFont);
             label.setTextFill(Color.WHITE);
             label.setBackground(new Background(new BackgroundFill(Color.valueOf("#d696bb"), new CornerRadii(5), Insets.EMPTY)));
             HBox hBox = new HBox();
@@ -107,4 +104,32 @@ public class ChatController {
         message.requestFocus();
     }
 
+    private String emojiConversion(String s) {
+        String x = s;
+        int i = 0;
+        String[] emo = {"TT", "-_-", ":d", ":p", ":o", ":/"};
+        String[] jr = {"\uD83D\uDE2D", "\uD83D\uDE11", "\uD83D\uDE03", "\uD83D\uDE1B", "\uD83D\uDE2E", "\uD83D\uDE15"};
+        for (String e : emo) {
+            if (x.contains(e)) {
+                x = x.replaceAll(e, jr[i]);
+            }
+            i++;
+        }
+
+        for (int j = 1; j < s.length(); j++) {
+            if (s.charAt(j) == ')') {
+                switch (s.charAt(j - 1)) {
+                    case ':':
+                        x = x.replaceAll(":\\)", "\u263A");
+                        break;
+                    case ';':
+                        x = x.replaceAll(";\\)", "\uD83D\uDE09");
+                        break;
+                }
+            } else if (s.charAt(j) == '(' && s.charAt(j - 1) == ':') {
+                x = x.replaceAll(":\\(", "\u2639");
+            }
+        }
+        return x;
+    }
 }

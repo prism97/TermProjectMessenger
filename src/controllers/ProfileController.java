@@ -22,7 +22,11 @@ public class ProfileController {
     private Main main;
     private String user;
     private ArrayList<String> activeNotFriend = new ArrayList<>();
+    private boolean gb = true;
 
+
+    @FXML
+    private Button grp;
 
     @FXML
     private Label userName;
@@ -40,8 +44,8 @@ public class ProfileController {
         userName.setText(msg + "'s Friendlist");
         showSuggestions(readFriendList());
         showFriends(readFriendList());
-        //messageCounter();
         changeFriends();
+        messageCounter();
         seeRequest();
     }
 
@@ -68,13 +72,13 @@ public class ProfileController {
             }
         }
 
-        if(activeFriends.size() >= 2){
+        if (activeFriends.size() >= 2) {
             try {
                 main.showGroupchatSelection(activeFriends, user, c, c.getNc());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setContentText("You don't have enough active friends to start a group chat!");
@@ -167,6 +171,35 @@ public class ProfileController {
         cf.start();
 
     }
+
+    private void messageCounter() {
+        Runnable task = () -> {
+            while (true) {
+                ArrayList<String> friends = readFriendList();
+                for (String s : friends) {
+                    if (c.messageMap.containsKey(s) && !c.messageMap.get(s).isEmpty()) {
+                        for (Node node : friendBox.getChildren()) {
+                            if (node.getProperties().containsKey(s)) {
+                                Platform.runLater(() -> node.setStyle("-fx-background-color: #42f49e;"));
+                            }
+                        }
+                    }
+                }
+                if (c.isGroupChatOn() && gb) {
+                    Platform.runLater(() -> {
+                        grp.setStyle("-fx-background-color: #370072;");
+                        grp.setTextFill(Color.WHITE);
+                    });
+                    gb = false;
+                }
+            }
+        };
+        Thread cf = new Thread(task);
+        cf.setDaemon(true);
+        cf.start();
+
+    }
+
 
     private void showSuggestions(ArrayList<String> friends) {
         try {
@@ -371,14 +404,6 @@ public class ProfileController {
         }
         return friends;
     }
-
-    /*public ArrayList<String> readActiveFriendList() {
-        ArrayList<String> friends = readFriendList();
-        ArrayList<String> activeFriends = new ArrayList<>();
-        for (String s : friends) {
-            if (s.)
-        }
-    }*/
 
     void setMain(Main main) {
         this.main = main;

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import singleChat.Client;
 import util.NetworkUtil;
@@ -52,12 +53,12 @@ public class GroupController {
             for (String friend : friends) {
                 CheckBox cb = new CheckBox();
                 cb.setText(friend);
-                cb.setStyle("-fx-background-color: #0084ff;");
-                cb.setPrefSize(185, 20);
+                cb.setStyle("-fx-background-color: #370072;");
+                cb.setTextFill(Color.WHITE);
+                cb.setPrefSize(180, 20);
                 activeFriendBox.getChildren().add(cb);
                 checkBoxes.add(cb);
             }
-            System.out.println(checkBoxes);
             startChat.setOnAction(e -> handleOptions(checkBoxes));
         }
     }

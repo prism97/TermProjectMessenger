@@ -48,14 +48,15 @@ public class GroupChatController {
                         for (String m : message) {
                             System.out.println(m);
                             String[] br = m.split(":", 2);
+                            Font titleFont = Font.loadFont(getClass().getResource("OpenSansEmoji.ttf").toExternalForm(), 15);
                             Label nameLabel = new Label(br[0]);
                             nameLabel.setPadding(new Insets(5));
                             nameLabel.setFont(Font.font("Candara", FontWeight.BOLD, 12));
                             nameLabel.setTextFill(Color.WHITE);
                             nameLabel.setBackground(new Background(new BackgroundFill(Color.valueOf("#ff0f4f"), new CornerRadii(5), Insets.EMPTY)));
-                            Label msgLabel = new Label(br[1]);
+                            Label msgLabel = new Label(emojiConversion(br[1]));
                             msgLabel.setPadding(new Insets(5));
-                            msgLabel.setFont(Font.font("Candara", FontWeight.BOLD, 14));
+                            msgLabel.setFont(titleFont);
                             msgLabel.setTextFill(Color.WHITE);
                             msgLabel.setBackground(new Background(new BackgroundFill(Color.valueOf("#ffa0a0"), new CornerRadii(5), Insets.EMPTY)));
                             VBox gcMsg = new VBox();
@@ -91,9 +92,10 @@ public class GroupChatController {
     public void sendAction() {
         try {
             userNc.write(partnerName + ":" + userName + ":" + message.getText());
-            Label label = new Label(message.getText());
+            Font titleFont = Font.loadFont(getClass().getResource("OpenSansEmoji.ttf").toExternalForm(), 15);
+            Label label = new Label(emojiConversion(message.getText()));
             label.setPadding(new Insets(5));
-            label.setFont(Font.font("Candara", FontWeight.BOLD, 14));
+            label.setFont(titleFont);
             label.setTextFill(Color.WHITE);
             label.setBackground(new Background(new BackgroundFill(Color.valueOf("#d696bb"), new CornerRadii(5), Insets.EMPTY)));
             HBox hBox = new HBox();
@@ -105,6 +107,35 @@ public class GroupChatController {
         }
         message.setText("");
         message.requestFocus();
+    }
+
+    private String emojiConversion(String s) {
+        String x = s;
+        int i = 0;
+        String[] emo = {"TT", "-_-", ":d", ":p", ":o", ":/"};
+        String[] jr = {"\uD83D\uDE2D", "\uD83D\uDE11", "\uD83D\uDE03", "\uD83D\uDE1B", "\uD83D\uDE2E", "\uD83D\uDE15"};
+        for (String e : emo) {
+            if (x.contains(e)) {
+                x = x.replaceAll(e, jr[i]);
+            }
+            i++;
+        }
+
+        for (int j = 1; j < s.length(); j++) {
+            if (s.charAt(j) == ')') {
+                switch (s.charAt(j - 1)) {
+                    case ':':
+                        x = x.replaceAll(":\\)", "\u263A");
+                        break;
+                    case ';':
+                        x = x.replaceAll(";\\)", "\uD83D\uDE09");
+                        break;
+                }
+            } else if (s.charAt(j) == '(' && s.charAt(j - 1) == ':') {
+                x = x.replaceAll(":\\(", "\u2639");
+            }
+        }
+        return x;
     }
 
 }

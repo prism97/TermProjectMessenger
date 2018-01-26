@@ -74,15 +74,23 @@ public class GroupController {
                 }
             }
             members.deleteCharAt(members.length() - 1);
-            if(i >= 2){
+            if((i >= 2) && !(groupName.getText().trim().equals(""))){
                 nc.write("NewGroup:" + members + ":" + groupName.getText());
                 client.setGroupChatOn(true);
                 main.showGroupChatBox(userName, groupName.getText(), client, client.getNc());
-            }else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("Choose at least two friends to create a group chat!");
-                alert.showAndWait();
+            } else {
+                if(i < 2){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Choose at least two friends to create a group chat!");
+                    alert.showAndWait();
+                }
+                if(groupName.getText().trim().equals("")){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please give a name to your group chat!");
+                    alert.showAndWait();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
